@@ -115,22 +115,22 @@ nav{
   font-size:0.74rem;
   font-weight:700;
   letter-spacing:0.08em;
-  color:#6F4014;
+  color:var(--accent-dark);
   text-shadow:0 1px 0 rgba(255,255,255,0.35);
   background:
     radial-gradient(140% 100% at 30% 12%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.06) 46%, rgba(255,255,255,0) 65%),
     linear-gradient(152deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.1) 36%, rgba(255,255,255,0.02) 68%),
-    linear-gradient(140deg, #E8C6A1 0%, #D4AA82 45%, #BD8A5A 100%);
-  border:1px solid rgba(128,81,35,0.34);
+    linear-gradient(140deg, var(--accent-pale) 0%, var(--accent) 100%);
+  border:1px solid var(--border);
   box-shadow:
-    0 10px 24px rgba(176,114,58,0.2),
+    0 10px 24px var(--accent-glow),
     0 2px 0 rgba(255,255,255,0.45) inset,
-    0 -8px 12px rgba(116,66,24,0.2) inset,
+    0 -8px 12px var(--accent-glow) inset,
     0 0 0 1px rgba(255,255,255,0.12) inset;
   backdrop-filter:blur(3px);
   -webkit-backdrop-filter:blur(3px);
   transform:translateZ(0);
-  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .nav-logo-mark::before{
   content:'';
@@ -147,9 +147,9 @@ nav{
 .nav-logo:hover .nav-logo-mark{
   transform:translateY(-1px);
   box-shadow:
-    0 14px 28px rgba(176,114,58,0.25),
+    0 14px 28px var(--accent-glow),
     0 2px 0 rgba(255,255,255,0.48) inset,
-    0 -8px 12px rgba(116,66,24,0.2) inset,
+    0 -8px 12px var(--accent-glow) inset,
     0 0 0 1px rgba(255,255,255,0.14) inset;
 }
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
