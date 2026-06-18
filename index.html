@@ -1065,10 +1065,10 @@ document.querySelectorAll('.sk-card, .exp-item, .proj-card, .cert-card').forEach
 });
 
 // ── CONTACT FORM — wired to Node.js backend
-const LOCAL_BACKEND_URL   = 'http://127.0.0.1:3002/api/contact';
-const RAILWAY_BACKEND_URL = 'https://portfolio-backend-production-8bc9.up.railway.app/api/contact';
+const LOCAL_BACKEND_URL = 'http://127.0.0.1:3002/api/contact';
+const PROD_BACKEND_URL  = 'https://uffoh-portfolio-backend.azurewebsites.net/api/contact';
 const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const BACKEND_URL = isLocalhost ? LOCAL_BACKEND_URL : RAILWAY_BACKEND_URL;
+const BACKEND_URL = isLocalhost ? LOCAL_BACKEND_URL : PROD_BACKEND_URL;
 
 document.getElementById('sendBtn').addEventListener('click', async function () {
   const btn        = this;

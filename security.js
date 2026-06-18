@@ -396,7 +396,7 @@
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob:",
       "media-src 'self' data:",
-      "connect-src 'self' http://127.0.0.1:3002 https://portfolio-backend-production-8bc9.up.railway.app",
+      "connect-src 'self' http://127.0.0.1:3002 https://uffoh-portfolio-backend.azurewebsites.net",
       "frame-ancestors 'none'",                      // reinforces clickjacking guard
       "form-action 'self'",
       "base-uri 'self'",
