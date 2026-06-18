@@ -312,6 +312,9 @@ nav{
   max-width:380px;
   margin-left:auto;
   position:relative;
+  /* Extra breathing room so floating badges never get visually
+     crowded by section content above/below or the photo edges */
+  padding:28px 28px 56px 28px;
 }
 .profile-frame{
   width:100%;
@@ -321,14 +324,32 @@ nav{
   background:var(--card);
   border:1px solid var(--border);
   position:relative;
+  z-index:1;
   transition:background 0.4s,border-color 0.4s;
+  box-shadow:0 20px 50px var(--shadow);
 }
 .profile-photo-slot{
   width:100%;height:100%;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:1rem;
-  background:linear-gradient(150deg, var(--card) 0%, var(--accent-pale) 100%);
+  overflow:hidden;
+  position:relative;
+}
+.profile-photo-slot img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+/* Soft gradient at the bottom of the photo itself so the badge
+   below always has a clean, slightly darker edge to sit against
+   rather than fighting whatever is in the photo (white shirts,
+   light backgrounds, etc.) */
+.profile-photo-slot::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:38%;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.32) 100%);
+  pointer-events:none;
 }
 .avatar-initials{
   width:110px;height:110px;
@@ -348,22 +369,42 @@ nav{
   text-align:center;
   padding:0 1rem;
 }
+.profile-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  background:linear-gradient(150deg, var(--card) 0%, var(--accent-pale) 100%);
+}
+
+/* Badge sits in the padded margin OUTSIDE the photo frame now —
+   no more overlap with the image, so it's always fully legible
+   regardless of what's in the photo behind it. */
 .profile-badge{
-  position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+  position:absolute;
+  bottom:6px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:5;
   background:var(--bg2);
   border:1px solid var(--border);
   border-radius:100px;
-  padding:0.55rem 1.2rem;
+  padding:0.6rem 1.3rem;
   font-size:0.72rem;
   color:var(--text);
   white-space:nowrap;
   display:flex;align-items:center;gap:0.5rem;
-  box-shadow:0 4px 20px var(--shadow);
+  box-shadow:0 8px 24px var(--shadow);
   transition:background 0.4s,border-color 0.4s;
 }
 .status-dot{width:7px;height:7px;border-radius:50%;background:#4CAF50;animation:pulseGreen 2s infinite;flex-shrink:0}
+
+/* Cert badges moved fully into the top padding strip — clear of
+   the photo entirely, so "AZ-700" etc. never gets cropped or
+   visually merged with the image content. */
 .cert-badges{
-  position:absolute;top:-12px;right:-12px;
+  position:absolute;
+  top:6px;
+  right:6px;
+  z-index:5;
   display:flex;flex-direction:column;gap:8px;
 }
 .cert-badge{
@@ -375,24 +416,27 @@ nav{
   font-family:'JetBrains Mono',monospace;
   color:var(--accent);
   font-weight:500;
-  box-shadow:0 2px 12px var(--shadow);
+  box-shadow:0 4px 16px var(--shadow);
   transition:background 0.4s,border-color 0.4s;
   white-space:nowrap;
 }
 
 /* ── TERMINAL ──────────────────────────────────────────── */
 .terminal-widget{
-  position:absolute;bottom:-40px;left:-50px;
+  position:absolute;
+  bottom:8px;
+  left:-6px;
+  z-index:6;
   background:var(--term-bg);
   border-radius:12px;
   padding:1rem 1.1rem;
   font-family:'JetBrains Mono',monospace;
   font-size:0.68rem;
   width:230px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.2);
+  box-shadow:0 16px 40px rgba(0,0,0,0.28);
   opacity:0;
   animation:slideUp 0.8s ease 1.4s forwards;
-  border:1px solid rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.06);
 }
 .term-dots{display:flex;gap:5px;margin-bottom:0.75rem}
 .td{width:8px;height:8px;border-radius:50%}
@@ -761,13 +805,18 @@ footer strong{color:var(--accent);font-weight:500}
       </div>
       <div class="profile-frame">
         <div class="profile-photo-slot">
-          <div class="avatar-initials">UCC</div>
-          <p class="photo-hint">[ Drop your photo here ]</p>
+          <!--
+            PHOTO GOES HERE.
+            Replace the placeholder div below with:
+            <img src="profile.jpeg" alt="Uffoh Chukwuka Clinton — Cloud DevOps Engineer" />
+            Make sure profile.jpeg sits in the SAME folder as this HTML file.
+          -->
+          <img src="profile.jpeg" alt="Uffoh Chukwuka Clinton — Cloud DevOps Engineer" />
         </div>
-        <div class="profile-badge">
-          <span class="status-dot"></span>
-          Open to opportunities · Lagos, NG
-        </div>
+      </div>
+      <div class="profile-badge">
+        <span class="status-dot"></span>
+        Open to opportunities · Lagos, NG
       </div>
       <div class="terminal-widget">
         <div class="term-dots">
